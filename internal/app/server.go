@@ -10,7 +10,7 @@ func RunServer(addr string, uploadDir string, jwtSecret string) error {
 
 	handler := New(uploadDir, jwtSecret)
 
-	// Оборачиваем ВСЁ в CORS middleware
+	
 	handler = withCORS(handler)
 
 	return http.ListenAndServe(addr, handler)
@@ -23,7 +23,7 @@ func MustRunServer(addr string, uploadDir string, jwtSecret string) {
 	}
 }
 
-// 🔥 ГЛОБАЛЬНЫЙ CORS (самый важный фикс)
+
 func withCORS(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 
