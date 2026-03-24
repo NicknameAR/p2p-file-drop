@@ -1,0 +1,50 @@
+/* Smooth animations */
+* {
+    transition: all 0.2s ease;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #111827;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #374151;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #4b5563;
+}
+
+/* Fade in animation */
+.fade-in {
+    animation: fadeIn 0.4s ease forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Dropzone active state */
+.drop-active {
+    border-color: #3b82f6 !important;
+    background-color: rgba(59, 130, 246, 0.1);
+}
+
+/* Glass card effect */
+.glass {
+    backdrop-filter: blur(12px);
+    background: rgba(31, 41, 55, 0.7);
+}

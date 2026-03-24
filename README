@@ -1,0 +1,118 @@
+# P2P File Drop
+
+[![Go](https://img.shields.io/badge/Go-1.22-blue)]()
+[![React](https://img.shields.io/badge/React-18-61dafb)]()
+[![WebRTC](https://img.shields.io/badge/WebRTC-P2P-green)]()
+[![Docker](https://img.shields.io/badge/Docker-ready-2496ed)]()
+[![Wails](https://img.shields.io/badge/Wails-desktop-orange)]()
+
+Local LAN file sharing app with real peer-to-peer transfer over WebRTC.
+
+---
+
+## 🎥 Demo
+
+> Add screenshots or GIFs here (UI, transfer, progress bar)
+
+---
+
+## 🚀 Features
+
+* Direct P2P transfer (WebRTC DataChannel)
+* LAN device discovery (UDP)
+* WebSocket signaling (Go)
+* File upload / download
+* Transfer progress bar
+* Desktop app (Wails)
+
+---
+
+## 🧱 Architecture
+
+Client (React)
+↓
+WebSocket (Signaling)
+↓
+WebRTC (P2P DataChannel)
+↓
+Client (Peer)
+
+---
+
+## 🖥 Run
+
+### Backend
+
+```bash
+cd сmd/server
+go run main.go
+```
+
+### Frontend
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Open:
+
+```
+http://localhost:5173
+```
+
+---
+
+## 🧪 Test P2P
+
+1. Open 2 tabs
+2. Upload file
+3. Select peer
+4. Send
+
+---
+
+## 🐳 Docker
+
+```bash
+docker build -t p2p-file-drop .
+docker run -p 9999:9999 p2p-file-drop
+```
+
+---
+
+## 🖥 Desktop (Wails)
+
+```bash
+wails dev
+```
+
+Build:
+
+```bash
+wails build
+```
+
+---
+
+## 📌 Notes
+
+* Optimized for LAN usage
+* TURN fallback enabled
+* No auth (intentionally simple UX)
+
+---
+
+## 📈 Future
+
+* Multi-file transfer
+* Speed indicator
+* Resume transfer
+* Mobile UI
+
+---
+
+## 🧠 Author
+
+Built as a practical networking + WebRTC project.

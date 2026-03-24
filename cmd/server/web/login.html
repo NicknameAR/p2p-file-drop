@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Login</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="/styles.css">
+</head>
+
+<body class="bg-gray-950 text-white flex items-center justify-center h-screen">
+
+<div class="bg-gray-900 p-8 rounded-xl shadow-xl w-96">
+    <h2 class="text-2xl mb-6 text-center font-semibold">FileServer Login</h2>
+
+    <button onclick="login()" 
+        class="w-full bg-blue-600 hover:bg-blue-500 transition rounded-lg py-2">
+        Login as Admin
+    </button>
+
+    <p id="error" class="text-red-400 mt-4 text-center hidden"></p>
+</div>
+
+<script>
+async function login() {
+    const res = await fetch("/login", { method: "POST" })
+    if (!res.ok) {
+        document.getElementById("error").innerText = "Login failed"
+        document.getElementById("error").classList.remove("hidden")
+        return
+    }
+
+    const data = await res.json()
+    localStorage.setItem("token", data.token)
+    window.location.href = "/"
+}
+</script>
+
+</body>
+</html>
