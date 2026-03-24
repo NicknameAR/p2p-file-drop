@@ -62,9 +62,6 @@ func (m *Manager) List() []Device {
 func (m *Manager) broadcastLoop() {
 	for {
 		payload, _ := json.Marshal(m.self)
-
-		// Получаем актуальные broadcast-адреса при каждой итерации
-		// (интерфейсы могут меняться)
 		targets := getBroadcastAddresses(m.port)
 
 		for _, addr := range targets {
@@ -120,7 +117,7 @@ func (m *Manager) listen() {
 
 		d.IP = remote.IP.String()
 
-		// Игнорируем пакеты от самого себя
+		
 		if d.IP == m.self.IP && d.Port == m.self.Port {
 			continue
 		}
@@ -152,20 +149,19 @@ func (m *Manager) cleanupLoop() {
 	}
 }
 
-// getBroadcastAddresses возвращает broadcast-адреса всех активных
-// сетевых интерфейсов + порт discovery.
+
 func getBroadcastAddresses(port int) []string {
 	portStr := strconv.Itoa(port)
 	var addrs []string
 
 	ifaces, err := net.Interfaces()
 	if err != nil {
-		// Fallback: глобальный broadcast
+		
 		return []string{"255.255.255.255:" + portStr}
 	}
 
 	for _, iface := range ifaces {
-		// Пропускаем выключенные и loopback интерфейсы
+		
 		if iface.Flags&net.FlagUp == 0 || iface.Flags&net.FlagLoopback != 0 {
 			continue
 		}
@@ -183,10 +179,10 @@ func getBroadcastAddresses(port int) []string {
 
 			ip := ipNet.IP.To4()
 			if ip == nil {
-				continue // только IPv4
+				continue 
 			}
 
-			// Вычисляем broadcast: IP | (~mask)
+			
 			mask := ipNet.Mask
 			broadcast := make(net.IP, 4)
 			for i := range broadcast {
@@ -204,10 +200,9 @@ func getBroadcastAddresses(port int) []string {
 	return addrs
 }
 
-// getLocalIP возвращает реальный IP этой машины в локальной сети.
+
 func GetLocalIP() string {
-	// Пробуем подключиться к внешнему адресу (без реальной отправки данных)
-	// чтобы ОС выбрала правильный исходящий интерфейс.
+	
 	conn, err := net.Dial("udp4", "8.8.8.8:80")
 	if err != nil {
 		return "127.0.0.1"
