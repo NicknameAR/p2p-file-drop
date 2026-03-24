@@ -1,6 +1,6 @@
 const API_URL = ""
 export const getAuthHeaders = createAuthHeaders
-// --- базовый URL ---
+
 export function getApiUrl() {
   return API_URL
 }
@@ -13,7 +13,7 @@ export async function login(username: string, password: string) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      login: username,     // ВАЖНО: backend ждёт login, не username
+      login: username,     
       password,
     }),
   })
