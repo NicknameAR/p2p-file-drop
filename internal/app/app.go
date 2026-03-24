@@ -40,7 +40,7 @@ func New(uploadDir string, jwtSecret string) http.Handler {
 		devices := dm.List()
 
 		if len(devices) == 0 {
-			// FIX: показываем реальный IP вместо 127.0.0.1
+			
 			devices = append(devices, discovery.Device{
 				Name: "Self-" + port,
 				IP:   discovery.GetLocalIP(),
