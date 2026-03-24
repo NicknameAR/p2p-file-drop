@@ -10,9 +10,16 @@ Local LAN file sharing app with real peer-to-peer transfer over WebRTC.
 
 ---
 
-## 🎥 Demo
+## Demo
 
-> Add screenshots or GIFs here (UI, transfer, progress bar)
+### Main UI
+![Main](assets/main.png)
+
+### Peer Connection
+![Peers](assets/peers.png)
+
+### File Transfer
+![Transfer](assets/transfer.png)
 
 ---
 
