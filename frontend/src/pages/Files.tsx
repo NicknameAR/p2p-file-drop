@@ -188,7 +188,8 @@ export default function Files() {
       }
 
       ws.onerror = () => {
-        
+
+      }
 
       ws.onclose = () => {
         if (destroyed) return
