@@ -29,7 +29,7 @@ func (s *LocalStorage) Open(name string) (*os.File, error) {
 func (s *LocalStorage) Delete(name string) error {
 	path := filepath.Join(s.BasePath, name)
 
-	// 🔥 проверка существования
+	
 	if _, err := os.Stat(path); os.IsNotExist(err) {
 		return err
 	}
