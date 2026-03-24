@@ -25,8 +25,6 @@ type TransferProgress = {
   peerId: string
 }
 
-// Относительные пути — Vite proxy перенаправляет на Go бэкенд.
-// Работает одинаково на localhost И на телефоне через 192.168.x.x:5173
 const API = ""
 const WS_URL = `ws://${window.location.hostname}:9999/ws`
 
@@ -107,7 +105,7 @@ export default function Files() {
       const data = await res.json()
       setDevices(Array.isArray(data) ? data : [])
     } catch {
-      // тихо — не спамим тостами при каждом тике
+      
     }
   }
 
@@ -118,7 +116,7 @@ export default function Files() {
     return () => window.clearInterval(timer)
   }, [])
 
-  // ── WebSocket + WebRTC с автореконнектом ─────────────────────────────────
+  // ── WebSocket + WebRTC  ─────────────────────────────────
   useEffect(() => {
     let destroyed = false
     let reconnectTimer: number
@@ -190,8 +188,7 @@ export default function Files() {
       }
 
       ws.onerror = () => {
-        // onerror всегда перед onclose — не дублируем toast
-      }
+        
 
       ws.onclose = () => {
         if (destroyed) return
