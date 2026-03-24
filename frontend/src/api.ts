@@ -73,7 +73,7 @@ export function createAuthHeaders(): HeadersInit {
   }
 }
 
-// --- обработка 401 ---
+
 export function isUnauthorized(status: number, text?: string) {
   if (status === 401 || status === 403) return true
 
